@@ -1,0 +1,90 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Datatera Beta API",
+    "description" : "An API for Datatera Inspector Functions",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "https://datatera-beta.azurewebsites.net",
+    "description" : "Datatera Beta v1.0"
+  } ],
+  "paths" : {
+    "/beta/checkcreditcardno/{creditcardno}" : {
+      "get" : {
+        "tags" : [ "creditcardno" ],
+        "description" : "Returns if credit card not detected!",
+        "parameters" : [ {
+          "name" : "creditcardno",
+          "in" : "path",
+          "description" : "creditcardno",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "5490892344502398"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Credit Card Number Check Verified",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string",
+                  "example" : ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/beta/sensitivedata" : {
+      "get" : {
+        "tags" : [ "sensitivedata" ],
+        "description" : "Returns sensitive data",
+        "parameters" : [ {
+          "name" : "Sensitive_Data",
+          "in" : "query",
+          "description" : "Sensitive_Data",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "allowReserved" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "https://datateraalpha.blob.core.windows.net/beta/SensitiveDataset.json"
+          }
+        }, {
+          "name" : "Nonsensitive_Data",
+          "in" : "query",
+          "description" : "Nonsensitive_Data",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "allowReserved" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "https://datateraalpha.blob.core.windows.net/beta/NonSensitiveDataset.json"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Sensitive Data,",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string",
+                  "example" : ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : { }
+}
