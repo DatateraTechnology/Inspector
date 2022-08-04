@@ -1,0 +1,13 @@
+connexion == 2.6.0
+python_dateutil >= 2.7
+setuptools >= 21.0.0
+json-sempai >= 0.4.0
+scipy >= 1.7.3
+flask_swagger >= 0.2.14
+flask
+tensorflow == 2.9.1
+pandas == 1.4.2
+azure-storage-blob == 12.11.0
+seaborn == 0.11.2
+keras == 2.9.0
+Keras-Preprocessing == 1.1.2
