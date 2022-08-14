@@ -38,10 +38,10 @@
           }
         }
     }},
-    "/beta/sensitivedata": {
+    "/beta/sensitivedatacnn": {
       "get": {
         "tags": [
-          "sensitivedata"
+          "sensitivedatacnn"
         ],
         "description": "Returns sensitive data",
         "parameters": [
@@ -80,6 +80,39 @@
              }
           }
         }
-      }
+      },
+      "/beta/sensitivedatapre": {
+        "get": {
+          "tags": [
+            "sensitivedatapre"
+          ],
+          "description": "Returns sensitive data",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "Anonymize_Data",
+              "required": true,
+              "allowReserved": true,
+              "description": "Anonymize_Data",
+              "schema": {
+                "type": "string",
+                "example": "https://datateraalpha.blob.core.windows.net/beta/SensitiveDataset.json"
+            }
+            }],
+          "responses": {
+            "200": {
+              "description": "Anonymize Data",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "string",
+                    "example": ""
+                      }
+                    }
+                  }
+               }
+            }
+          }
+        }
     }
 }
