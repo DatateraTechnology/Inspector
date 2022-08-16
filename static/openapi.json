@@ -96,7 +96,7 @@
               "description": "Anonymize_Data",
               "schema": {
                 "type": "string",
-                "example": "https://datateraalpha.blob.core.windows.net/beta/SensitiveDataset.json"
+                "example": "https://datateraalpha.blob.core.windows.net/beta/TestData3.csv"
             }
             }],
           "responses": {
