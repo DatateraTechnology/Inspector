@@ -181,7 +181,7 @@ def sensitive_data_cnn():
     local_path = os.path.expanduser("~/Result")
     if not os.path.exists(local_path):
             os.makedirs(os.path.expanduser("~/Result"))
-    local_file_name = "Result_" + str(uuid.uuid4()) + ".png"
+    local_file_name = "Result_" + str(uuid.uuid4()) + ".json"
     full_path_to_file = os.path.join(local_path, local_file_name)
 
     plt.savefig(full_path_to_file) 
@@ -217,7 +217,7 @@ def sensitive_data_cnn():
     plt.ylabel('Expected')
 
   model_json = model.to_json()
-  local_file_name = "Model_" + str(uuid.uuid4()) + ".png"
+  local_file_name = "Model_" + str(uuid.uuid4()) + ".json"
   blob = BlobClient.from_connection_string("DefaultEndpointsProtocol=https;AccountName=datateraalpha;AccountKey=W890/aL1FprdvAsAV4xXpOof1BZQm5Ujb044t8s2XaHFeA0QBYlffI+KYG72uQCg6Ly8SNkeRki8cOwma4co9A==;EndpointSuffix=core.windows.net", container_name="beta", blob_name=local_file_name)
   blob.upload_blob(model_json)
 
