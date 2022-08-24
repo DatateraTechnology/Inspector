@@ -181,7 +181,7 @@ def sensitive_data_cnn():
     local_path = os.path.expanduser("~/Result")
     if not os.path.exists(local_path):
             os.makedirs(os.path.expanduser("~/Result"))
-    local_file_name = "Result_" + str(uuid.uuid4()) + ".json"
+    local_file_name = "Result_" + str(uuid.uuid4()) + ".png"
     full_path_to_file = os.path.join(local_path, local_file_name)
 
     plt.savefig(full_path_to_file) 
