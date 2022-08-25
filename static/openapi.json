@@ -113,6 +113,39 @@
                }
             }
           }
-        }
+        },
+        "/beta/qualitydata": {
+          "get": {
+            "tags": [
+              "qualitydata"
+            ],
+            "description": "Returns quality data",
+            "parameters": [
+              {
+                "in": "query",
+                "name": "Quality_Data",
+                "required": true,
+                "allowReserved": true,
+                "description": "Quality_Data",
+                "schema": {
+                  "type": "string",
+                  "example": "https://datateraalpha.blob.core.windows.net/beta/TestData.csv"
+              }
+              }],
+            "responses": {
+              "200": {
+                "description": "Quality_Data",
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "example": ""
+                        }
+                      }
+                    }
+                 }
+              }
+            }
+          }
     }
 }
