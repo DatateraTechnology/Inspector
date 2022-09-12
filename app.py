@@ -413,11 +413,11 @@ def quality_data():
 
   df.columns = df.columns.str.lower().str.replace('&', '_').str.replace(' ', '_')
   print(colored("Columns after rename:", attrs = ['bold']), list(df.columns),'\n',
-        colored('*'*100, 'red', attrs = ['bold']), sep = '')  
+      colored('*'*100, 'red', attrs = ['bold']), sep = '')  
   print(colored("Descriptive Statistics \n", attrs = ['bold']), df.describe().round(2),'\n',
-        colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
+      colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
   print(colored("Descriptive Statistics (Categorical Columns) \n", attrs = ['bold']), df.describe(include = object).T,'\n',
-        colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
+      colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
 
   """# Functions for Missing Values, Multicolinearity and Duplicated Values"""
   def missing_values():
@@ -464,6 +464,12 @@ def quality_data():
 
   """# Missing Values, Multicolienaity and Duplicated Values"""
 
+  multicolinearity_control()
+
+  duplicate_values()
+
+  missing_values()
+  
   dc = DuplicateChecker(df=df)
 
   results = dc.evaluate()
@@ -491,15 +497,18 @@ def quality_data():
    print("****************************************MISSING VALUES**********************************************")
    print(missing_values())
    print(colored("Shape:", attrs=['bold']), df.shape,'\n', 
-          colored('*'*100, 'red', attrs = ['bold']),
-          colored("\nInfo:\n", attrs = ['bold']), sep = '')
+         colored('*'*100, 'red', attrs = ['bold']),
+         colored("\nInfo:\n", attrs = ['bold']), sep = '')
    print("***************************************DUPLICATED VALUES********************************************")
    print(duplicate_values())
    print(colored("Shape:", attrs=['bold']), df.shape,'\n', 
-          colored('*'*100, 'red', attrs = ['bold']),
-          colored("\nInfo:\n", attrs = ['bold']), sep = '')
+         colored('*'*100, 'red', attrs = ['bold']),
+         colored("\nInfo:\n", attrs = ['bold']), sep = '')
+   print(dc.duplicate_columns())
    print("*************************************MULTICOLINEARITY CHECK*****************************************")
    multicolinearity_control()
+   print("*****************************************ERRONEOUS DATA*********************************************")
+   print(ErroneousDataIdentifier(df=df).predefined_erroneous_data())
 
   Quality_Check()
 
@@ -523,7 +532,6 @@ def quality_data():
    edi.predefined_erroneous_data()
    print("Overall percentage of Eroneous Data is %",(edi.predefined_erroneous_data().sum()[0]/(df.shape[0]*df.shape[1]))*100)
    print()
-   print("***************************************OVERALL DATA QUALITY*****************************************")
  
   KPI()
 
