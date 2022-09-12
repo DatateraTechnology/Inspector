@@ -461,35 +461,6 @@ def quality_data():
       #     else:
       #         print(colored('We will now check the missing values and if necessary, the related columns will be dropped!', attrs = ['bold']),'\n',
       #               colored('*'*100, 'red', attrs = ['bold']), sep = '')
-
-  """# Missing Values, Multicolienaity and Duplicated Values"""
-
-  multicolinearity_control()
-
-  duplicate_values()
-
-  missing_values()
-  
-  dc = DuplicateChecker(df=df)
-
-  results = dc.evaluate()
-  results.keys()
-
-  warnings = dc.get_warnings()
-
-  exact_duplicates_out = dc.exact_duplicates()
-
-  dc.duplicate_columns()
-
-  edi = ErroneousDataIdentifier(df=df)
-
-  edi.evaluate()
-
-  edi.predefined_erroneous_data()
-
-  df.sample(2)
-
-  klib.missingval_plot(df)
   
   """# DATA QUALITY FUNCTION"""
 
