@@ -20,6 +20,9 @@ from typing import List
 from presidio_analyzer import AnalyzerEngine, RecognizerResult
 from presidio_analyzer.nlp_engine import NlpArtifacts
 import os
+from ydata_quality import DataQuality
+from ydata_quality.erroneous_data import ErroneousDataIdentifier
+from ydata_quality.duplicates import DuplicateChecker
 
 app = Flask(__name__)
 
@@ -401,22 +404,22 @@ def quality_data():
   df=pd.read_csv(url)
   
   print(colored("Shape:", attrs=['bold']), df.shape,'\n', 
-      colored('*'*100, 'red', attrs = ['bold']),
-      colored("\nInfo:\n", attrs = ['bold']), sep = '')
+        colored('*'*100, 'red', attrs = ['bold']),
+        colored("\nInfo:\n", attrs = ['bold']), sep = '')
   print(df.info(), '\n', 
-      colored('*'*100, 'red', attrs = ['bold']), sep = '')
+        colored('*'*100, 'red', attrs = ['bold']), sep = '')
   print(colored("Number of Uniques:\n", attrs = ['bold']), df.nunique(),'\n',
-      colored('*'*100, 'red', attrs = ['bold']), sep = '')
+        colored('*'*100, 'red', attrs = ['bold']), sep = '')
   print(colored("All Columns:", attrs = ['bold']), list(df.columns),'\n', 
-      colored('*'*100, 'red', attrs = ['bold']), sep = '')
+        colored('*'*100, 'red', attrs = ['bold']), sep = '')
 
   df.columns = df.columns.str.lower().str.replace('&', '_').str.replace(' ', '_')
   print(colored("Columns after rename:", attrs = ['bold']), list(df.columns),'\n',
-      colored('*'*100, 'red', attrs = ['bold']), sep = '')  
+        colored('*'*100, 'red', attrs = ['bold']), sep = '')  
   print(colored("Descriptive Statistics \n", attrs = ['bold']), df.describe().round(2),'\n',
-      colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
+        colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
   print(colored("Descriptive Statistics (Categorical Columns) \n", attrs = ['bold']), df.describe(include = object).T,'\n',
-      colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
+        colored('*'*100, 'red', attrs = ['bold']), sep = '') # Gives a statstical breakdown of the data.
 
   """# Functions for Missing Values, Multicolinearity and Duplicated Values"""
   def missing_values():
@@ -463,11 +466,22 @@ def quality_data():
 
   """# Missing Values, Multicolienaity and Duplicated Values"""
 
-  multicolinearity_control()
+  dc = DuplicateChecker(df=df)
 
-  duplicate_values()
+  results = dc.evaluate()
+  results.keys()
 
-  missing_values()
+  warnings = dc.get_warnings()
+
+  exact_duplicates_out = dc.exact_duplicates()
+
+  dc.duplicate_columns()
+
+  edi = ErroneousDataIdentifier(df=df)
+
+  edi.evaluate()
+
+  edi.predefined_erroneous_data()
 
   df.sample(2)
 
@@ -476,8 +490,6 @@ def quality_data():
   """# DATA QUALITY FUNCTION"""
 
   def Quality_Check():
-   print("*****************************************DATA SUMMARY***********************************************")
-   print(quality_data())
    print("****************************************MISSING VALUES**********************************************")
    print(missing_values())
    print(colored("Shape:", attrs=['bold']), df.shape,'\n', 
@@ -491,7 +503,7 @@ def quality_data():
    print("*************************************MULTICOLINEARITY CHECK*****************************************")
    multicolinearity_control()
 
-   Quality_Check()
+  Quality_Check()
 
    """# KPI Function"""
 
@@ -508,10 +520,14 @@ def quality_data():
    print("*************************************MULTICOLINEARITY CHECK*****************************************")
    multicolinearity_control()
    print("")
+   print("******************************************ERRONEOUS DATA********************************************")
+   ErroneousDataIdentifier(df=df).predefined_erroneous_data()
+   edi.predefined_erroneous_data()
+   print("Overall percentage of Eroneous Data is %",(edi.predefined_erroneous_data().sum()[0]/(df.shape[0]*df.shape[1]))*100)
    print()
    print("***************************************OVERALL DATA QUALITY*****************************************")
  
-   KPI()
+  KPI()
 
   """# KPI Assesement
     High Quality Data Criteria
