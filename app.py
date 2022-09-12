@@ -17,8 +17,6 @@ from presidio_analyzer.nlp_engine import NlpArtifacts
 from presidio_anonymizer import AnonymizerEngine
 from presidio_analyzer import AnalyzerEngine
 from typing import List
-from presidio_analyzer import AnalyzerEngine, RecognizerResult
-from presidio_analyzer.nlp_engine import NlpArtifacts
 import os
 from ydata_quality import DataQuality
 from ydata_quality.erroneous_data import ErroneousDataIdentifier
