@@ -494,8 +494,6 @@ def quality_data():
   """# DATA QUALITY FUNCTION"""
 
   def Quality_Check():
-   print("*****************************************DATA SUMMARY***********************************************")
-   print(quality_data())
    print("****************************************MISSING VALUES**********************************************")
    print(missing_values())
    print(colored("Shape:", attrs=['bold']), df.shape,'\n', 
@@ -512,9 +510,7 @@ def quality_data():
    print("*****************************************ERRONEOUS DATA*********************************************")
    print(ErroneousDataIdentifier(df=df).predefined_erroneous_data())
 
-   Quality_Check()
-
-   """# KPI Function"""
+  Quality_Check()
 
   def KPI():
    print("**********************************NUMBER OF COLUMNS AND ROWS****************************************")
@@ -536,7 +532,7 @@ def quality_data():
    print()
    print("***************************************OVERALL DATA QUALITY*****************************************")
  
-   KPI()
+  KPI()
 
   """# KPI Assesement
     High Quality Data Criteria
