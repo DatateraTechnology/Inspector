@@ -461,10 +461,41 @@ def quality_data():
       #     else:
       #         print(colored('We will now check the missing values and if necessary, the related columns will be dropped!', attrs = ['bold']),'\n',
       #               colored('*'*100, 'red', attrs = ['bold']), sep = '')
+
+  """# Missing Values, Multicolienaity and Duplicated Values"""
+
+  multicolinearity_control()
+
+  duplicate_values()
+
+  missing_values()
+  
+  dc = DuplicateChecker(df=df)
+
+  results = dc.evaluate()
+  results.keys()
+
+  warnings = dc.get_warnings()
+
+  exact_duplicates_out = dc.exact_duplicates()
+
+  dc.duplicate_columns()
+
+  edi = ErroneousDataIdentifier(df=df)
+
+  edi.evaluate()
+
+  edi.predefined_erroneous_data()
+
+  df.sample(2)
+
+  klib.missingval_plot(df)
   
   """# DATA QUALITY FUNCTION"""
 
   def Quality_Check():
+   print("*****************************************DATA SUMMARY***********************************************")
+   print(quality_data())
    print("****************************************MISSING VALUES**********************************************")
    print(missing_values())
    print(colored("Shape:", attrs=['bold']), df.shape,'\n', 
@@ -481,9 +512,9 @@ def quality_data():
    print("*****************************************ERRONEOUS DATA*********************************************")
    print(ErroneousDataIdentifier(df=df).predefined_erroneous_data())
 
-  Quality_Check()
+   Quality_Check()
 
-  """# KPI Function"""
+   """# KPI Function"""
 
   def KPI():
    print("**********************************NUMBER OF COLUMNS AND ROWS****************************************")
@@ -503,17 +534,16 @@ def quality_data():
    edi.predefined_erroneous_data()
    print("Overall percentage of Eroneous Data is %",(edi.predefined_erroneous_data().sum()[0]/(df.shape[0]*df.shape[1]))*100)
    print()
+   print("***************************************OVERALL DATA QUALITY*****************************************")
  
-  KPI()
+   KPI()
 
   """# KPI Assesement
     High Quality Data Criteria
-
     1.   Overall Missing Value percentage less than %5 and,
     2.   Overall Duplicated Value percentage less than %2 and,
     3.   No Multicolinearity (Correlation between columns NOT higher than %90) and,
     4.   Overall Erroneous Data percentage is less than %2.
-
   """
 
   if (missing_values().mean()[1] <.05) and (df.duplicated(subset = None, keep = 'first').sum()/len(df)<.02):
