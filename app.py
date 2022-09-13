@@ -528,7 +528,7 @@ def quality_data():
    print("******************************************ERRONEOUS DATA********************************************")
    ErroneousDataIdentifier(df=df).predefined_erroneous_data()
    edi.predefined_erroneous_data()
-   print("Overall percentage of Eroneous Data is %",(edi.predefined_erroneous_data().sum()[0]/(df.shape[0]*df.shape[1]))*100)
+   #print("Overall percentage of Eroneous Data is %",(edi.predefined_erroneous_data().sum()[0]/(df.shape[0]*df.shape[1]))*100)
    print()
    print("***************************************OVERALL DATA QUALITY*****************************************")
  
