@@ -259,25 +259,6 @@ def sensitive_data_cnn():
 
 @app.route("/beta/sensitivedatapre", methods=["GET"], endpoint='sensitive_data_pre')
 def sensitive_data_pre():
-  
-    url=request.args.get('Anonymize_Data')
-    datax=pd.read_csv(url)
-
-    datax.head()
-
-    def anonymize():
-        for i in datax:
-          datax[i] = datax[i].apply(lambda x: predict_fn({"inputs": x,"parameters": {"anonymize": True}},AnalyzerEngine())["anonymized"])
-        return jsonify(f"Found:{datax}")
-
-    anonymize()
-
-    def not_anonymize(datax):
-        for i in datax:
-          datax[i] = datax[i].apply(lambda x: predict_fn({"inputs": x,"parameters": {"anonymize": False}},AnalyzerEngine()))
-        return jsonify(f"Found:{datax}")
-          
-    not_anonymize(datax)
 
     def analyze(self, text: str, entities: List[str] = None, nlp_artifacts: NlpArtifacts = None
         ) -> List[RecognizerResult]:
@@ -386,7 +367,30 @@ def sensitive_data_pre():
 
     print(predict_fn(data,AnalyzerEngine())[1])
 
-    return jsonify(f"Anonymized/Nonanonymized Data:{datax}")
+    url=request.args.get('Anonymize_Data')
+    data=pd.read_csv(url)
+
+    data.head()
+
+    def anonymize(data):
+        for i in data:
+          data[i] = data[i].apply(lambda x: predict_fn({"inputs": x,"parameters": {"anonymize": True}},AnalyzerEngine())["anonymized"])
+        return jsonify(f"Found:{data}")
+
+    anonymize(data)
+
+    data=pd.read_csv(url)
+
+    data.head()
+
+    def not_anonymize(data):
+        for i in data:
+          data[i] = data[i].apply(lambda x: predict_fn({"inputs": x,"parameters": {"anonymize": False}},AnalyzerEngine()))
+        return jsonify(f"Found:{data}")
+          
+    not_anonymize(data)
+
+    return jsonify(f"Anonymized/Nonanonymized Data:{data}")
 
 @app.route("/beta/qualitydata", methods=["GET"], endpoint='quality_data')
 def quality_data():
