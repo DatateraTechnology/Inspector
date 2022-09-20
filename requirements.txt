@@ -19,3 +19,6 @@ klib == 1.0.1
 termcolor == 1.1.0
 matplotlib == 3.4.2
 ydata_quality
+spacy == 3.4.1
+spacy-legacy == 3.0.9
+spacy-loggers == 1.0.3
