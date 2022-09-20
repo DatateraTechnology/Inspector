@@ -259,7 +259,7 @@ def sensitive_data_cnn():
 
 @app.route("/beta/sensitivedatapre", methods=["GET"], endpoint='sensitive_data_pre')
 def sensitive_data_pre():
-
+    os.system("spacy download en_core_web_lg")
     def analyze(self, text: str, entities: List[str] = None, nlp_artifacts: NlpArtifacts = None
         ) -> List[RecognizerResult]:
             """
