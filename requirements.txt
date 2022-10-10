@@ -22,3 +22,4 @@ ydata_quality
 spacy == 3.4.1
 spacy-legacy == 3.0.9
 spacy-loggers == 1.0.3
+py-spy
