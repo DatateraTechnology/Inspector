@@ -1,146 +1,48 @@
-Part 1 - Proposal Submission
+---------------------------------------------------------------Data Quality Inspector Model------------------------------------------------------------------------
+	Model aims to detect the quality of a given dataset by using Python libraries. 
+1.	Introduction
+This notebook aims to detect the quality of a given text dataset. There are couple of metrics need to considered in terms of data quality. These are;
+a)	Completeness-This measures whether all the necessary data is present in a specific dataset. You can think about completeness in one of two ways: at the record level or at the attribute level. Measuring completeness at the attribute level is a little more complex however, as not all fields will be mandatory.
+b)	Accuracy-How accurately does your data reflect the real-world object? In the financial sector, data accuracy is usually black or white – it either is or isn’t accurate. That’s because the number of pounds and pennies in an account is a precise number. Data accuracy is critical in large organizations, where the penalties for failure are high.
+c)	Consistency-Maintaining synchronicity between different databases is essential. To ensure data remains consistent on a daily basis, software systems are often the answer.
+d)	Validity-Validity is a measure of how well data conforms to required value attributes. For example, ensuring dates conform to the same format, i.e., date/month/year or month/date/year.
+e)	Timeliness-Timeliness reflects the accuracy of data at a specific point in time. An example of this is when a customer moves to a new house, how timely are they in informing their bank of their new address? Few people do this immediately, so there will be a negative impact on the timeliness of their data.
+f)	Integrity-To ensure data integrity, it’s important to maintain all the data quality metrics we’ve mentioned above as your data moves between different systems. Typically, data stored in multiple systems breaks data integrity.
+In this notebook, we only looked into missing values, duplicated values, multicolinearity and erroneous values for a given dataset in order to analyze the metrics mentioned above.
 
-Name of Project: Datatera Metadata Functions
+2.	Criteria Used for Data Quality
+High Quality Data Criteria
+1.	Overall Missing Value percentage less than %5 and,
+2.	Overall Duplicated Value percentage less than %2 and,
+3.	No Multicolinearity (Correlation between columns NOT higher than %90) and,
+4.	Overall Erroneous Data percentage is less than %2.
+3.	Technologies Used
+Python Libraries
+a)	Ydata-Quality- ydata_quality is an open-source python library for assessing Data Quality throughout the multiple stages of a dataset.
+b)	Klib- klib is a Python library for importing, cleaning, analyzing and preprocessing data.
 
-Proposal in one sentence: Datatera is a global marketplace to connect HealthData Providers with HealthTech companies by making larger samples of the high-quality real-world datasets available.
+4.	Output
+The model evaluates the high quality data criteria and gives whether the given data set is high quality or low quality.
 
-Description of the project and what problem is it solving: HealthTech AI companies are facing challenges to get access to qualitative medical datasets while they are building AI-models which results in bias and other errors and that takes a lot of time and money to maintain and manage. Datatera will provide a global data computing marketplace where Data Scientists will have the opportunity to train their AI models on high-qualitative and diverse training datasets while preserving privacy.
+----------------------------------------------------------Sensitive Data Indicator Model-------------------------------------------------------------------------------
+	Model aims to detect sensitive data for a given dataset. Model is created by using Convolutional Neural Networks (CNN) and Name Entity Recognition (NER).
+1.	Introduction
+This notebook aims to capture Sensitive Data (Name, email address, password, phone number, date of birth etc) for a given dataset. Two different models were used and merged in one notebook. 
+First Model uses Convolutional Neural Networks (CNN), this model is trained with Sensitive and Non Sensitive Datasets. Output gives the probability of sensitivity for a given sentence. This model is best for a text (sentence like) input data.
+Second Model uses Presidio Analyzer and Presidio Anonymizer. Anonymizing data is optional. Name Entity Recogntion (NER) models are pretrained models and they don't need to be trained. Entities such as CREDIT_CARD, IBAN_CODE, EMAIL_ADDRESS, BANK_NUMBER can be detected and anonymized(optional) with this model. Output gives detection of sensitive data for chosen entities. This model can be used for text (sentence like) input data or Data Frames as input.
+2.	Technologies Used
+Python Libraries
+a)	Tensor Flow-Tensor Flow is a foundation library that can be used to create Deep Learning models directly or by using wrapper libraries that simplify the process built on top of TensorFlow.
+b)	Keras-Keras is a high-level neural network library that runs on top of TensorFlow.
+c)	Presidio Analyzer-The Presidio analyzer is a Python based service for detecting PII entities in text.
+d)	Presidio Anonymizer-The Presidio anonymizer is a Python based module for anonymizing detected PII text entities with desired values.
+e)	spaCy is a free open-source library for Natural Language Processing in Python. It features NER, POS tagging, dependency parsing, word vectors and more.
+Hugging Face 
+Hugging Face is a community and data science platform that provides: Tools that enable users to build, train and deploy ML models based on open source (OS) code and technologies.
+3.	Output
+First model gives the probability of sensitive data for a given sentence-like input.  
+Second Model detects sensitive data for a given test dataset.
+ 
 
-Grant Deliverables: (Target deliverables for the funding provided.)
 
-Sensitive Data Inspector Function powered by AI <br />
-Output a result of which columns could have sensitive data with ratio <br />
-Qualitative Data Inspector Function powered by AI <br />
-Output a result of how a Qualitative dataset is based on the used KPIs with ratio <br />
 
-Which Project Category best describes your project? Build/improve applications or integrations to Ocean
-
-What is the final product? <br />
-A service data computing marketplace powered by Blockchain and inspection module powered by AI on top to be able to provide quality in training datasets and trustworthy algorithms.
-
-Question on "value add" criteria: which one or more of the criteria will your project focus on? Why do you believe your team will do well on those criteria? <br />
-Usage of Ocean and Viability - We believe we can improve and develop the C2D concept with our add-on module to be able to provide full awareness of data sensitivity and data quality. We are a pure tech team specialized mainly in system development and data science so we have the necessary expertise and knowledge to make this happen.
-
-Funding Requested: $2K
-
-Proposal Wallet Address: https://etherscan.io/address/0xEB023A03cfebd0a58214CA018c3f25F0c8b96000
-
-Team Website: http://www.datatera.se
-
-Twitter Handle: https://twitter.com/DatateraTech
-
-Discord Handle: N/A
-
-Project lead full name: Tugce Ozdeger
-
-Project lead email: tugce@datatera.se
-
-Country of Residence: Sweden <br />
-
-Part 2 - Team <br />
-
-2.1 Core Team <br />
-
-Tugce Ozdeger <br />
-
-Role: Developer, CTO, Lead Developer, Architect <br />
-Relevant Credentials: <br />
-GitHub: https://github.com/TugceOzdeger <br />
-LinkedIn: https://www.linkedin.com/in/tugceozdeger <br />
-Other: <br />
-Background/Experience: <br />
-Founder at Datatera <br />
-10+ years of professional experience as a senior system developer <br />
-
-Tevfik Akin
-
-Role: Senior Pharmacist & Data Analyst <br />
-Relevant Credentials: <br />
-GitHub: https://github.com/tevfikakin <br />
-LinkedIn: https://www.linkedin.com/in/tevfik-akin <br />
-Other: <br />
-Background/Experience: <br />
-Data Analyst at Datatera <br />
-
-Zeki Gultekin
-
-Role: Senior Data Analyst <br />
-Relevant Credentials: <br />
-GitHub: https://github.com/Gltknzk <br />
-LinkedIn: https://www.linkedin.com/in/zeki-gultekin <br />
-Other: <br />
-Background/Experience: <br />
-Senior Data Analyst at Datatera <br />
-
-2.2 Advisors <br />
-
-Ruslan Gasimli
-
-Role: Advisor <br />
-Other: <br />
-Background/Experience: <br />
-Data Advisor at Datatera <br />
-Senior BI Data Scientist <br />
-
-Part 3 - Proposal Details <br />
-
-3.1 Details <br />
-Details of the proposal: <br />
-We would like to add a metadata feature where we inspect the datasets and detect the sensitive data by leveraging AI (Convolutional Neural Network (CNN)). The corresponding columns in the CSV file format that was detected as sensitive data will be ignored when we run the Compute Job by reading the results of the Sensitive Data Inspector Module in JSON when we configure the dataset path for the given algorithm. In this way, we will provide complete sensitive data security and also the “training data” concept. We will also assess the quality of the data by scanning through the data points to make sure that the main dimensions of data quality exist based on the relevant KPI that was applied in the AI Model.
-
-3.2 If in Category "Build / improve applications or integration to Ocean": <br />
-App will be live at: https://app.swaggerhub.com/apis/DatateraTech/DatateraBeta/1.0 <br />
-
-Is the software open-source? We have commercial intentions for this software. <br />
-Project software can be found at: https://github.com/DatateraTechnology	<br />
-
-3.3 If the project includes software: <br />
-Are there any mockups or designs to date? If yes, please share details / links. <br />
-
-Datatera Inspection Module.jpg
-
-Tech Stack:
-Inspector Module Functions in Python
-GitHub will be used for Code & Version Control
-Inspector decision-making intelligence by Convolutional Neural Network (CNN)
-Visual Studio Code will be used as IDE
-Inspector results will be generated in JSON
-Functions will be published on SwaggerHub
-
-3.4 Project Deliverables - Roadmap <br />
-Any prior work completed thus far? Details? <br />
-The system architecture, result data structure and the tech stack details have been decided. 
-
-What is the project roadmap? That is: what are key milestones, and the target date for each milestone. Please make sure that one milestone is about publishing your results, e.g. as a medium blog post. <br />
-Grant Deliverables 1: Sensitive Text Data Inspector Function powered by AI
-Output a result with a ratio indicating the columns that possibly contain sensitive data
-
-Grant Deliverables 2: Qualitative Text Data Inspector Function powered by AI
-Output a result with the ratio indicating the qualitativeness of the dataset that is based on the KPIs applied.
-
-Project Roadmap:
-Grant Deliverables 1: Sensitive Text Data Inspector Function powered by AI (Convolutional Neural Network (CNN)) <br />
-Sensitive Data Inspector Function powered by AI - Development completed & System test started - Apr 15, 2022 <br />
-System test by developer completed & functions published on SwaggerHub - May 13, 2022 <br />
-Test cases and sample datasets will be provided for Acceptance Test - on May 20, 2022 <br />
-Acceptance test on Swagger - May 27, 2022 <br />
-Publishing on social media that we release the pre-beta version - on June 30, 2022 <br />
-Pre-Beta testers will be informed - on July 1, 2022 <br />
-
-Grant Deliverables 2: Qualitative Text Data Inspector Function powered by AI (Convolutional Neural Network (CNN)) <br />
-Qualitative Data Inspector Function powered by AI - Development completed & System test started - July 30, 2022 <br />
-System test by developer completed & functions published on SwaggerHub - Aug 13, 2022 <br />
-Test cases and sample datasets will be provided for Acceptance Test - on Aug 20, 2022 <br />
-Acceptance test on Swagger - Aug 27, 2022 <br />
-Publishing on social media that we release the MVP beta version - on Aug 30, 2022 <br />
-MVP Beta testers will be informed - on Sep 1, 2022 <br />
-
-What are the team's future plans and intentions? Is there maintenance? Possible extensions to the work? <br />
-Yes, we will maintain and develop further and fix bugs/errors since this module will be part of our Datatera solution.
-
-Dataset format will be in CSV only from the beginning and we can definitely support more formats e.g. XML, Xls, etc., and even medical images.
-We will probably add more KPI and metrics to be able to better detect the sensitive and qualitative datasets.
-We will add possible extensions to this work to be able to provide more relevant AI insights on the metadata feature.
-
-3.5 Additional Information <br />
-We are fundraising at the moment for pre-seed.
