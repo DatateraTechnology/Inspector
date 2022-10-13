@@ -1,4 +1,4 @@
----------------------------------------------------------------Data Quality Inspector Model--------------------------------------------------------------
+Data Quality Inspector Model
 
 Model aims to detect the quality of a given dataset by using Python libraries. 
 
@@ -27,7 +27,7 @@ b)Klib- klib is a Python library for importing, cleaning, analyzing and preproce
 4.Output
 The model evaluates the high quality data criteria and gives whether the given data set is high quality or low quality.
 
-----------------------------------------------------------Sensitive Data Indicator Model-----------------------------------------------------------------
+Sensitive Data Indicator Model
 
 Model aims to detect sensitive data for a given dataset. Model is created by using Convolutional Neural Networks (CNN) and Name Entity Recognition (NER).
 
