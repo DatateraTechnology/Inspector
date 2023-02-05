@@ -1,0 +1,8 @@
+{
+    "blobStorage": {
+        "imageQualityConnectionString": "DefaultEndpointsProtocol=https;AccountName=dataterastoragetest;AccountKey=qUglVVKjToZXs39L2MDU3/qAePo2H6aUpOsCSzTrxFutQqu8k3atRVuw4SgZRHYz/1aWokZ2CGlv+AStYwSz6w==;EndpointSuffix=core.windows.net",
+        "sensitiveDataConnectionString": "DefaultEndpointsProtocol=https;AccountName=datateraalpha;AccountKey=W890/aL1FprdvAsAV4xXpOof1BZQm5Ujb044t8s2XaHFeA0QBYlffI+KYG72uQCg6Ly8SNkeRki8cOwma4co9A==;EndpointSuffix=core.windows.net",
+        "storageAccount": "https://dataterastoragetest.blob.core.windows.net",
+        "datateraAlphaBlobUrl": "https://datateraalpha.blob.core.windows.net/beta/"
+    }
+}
