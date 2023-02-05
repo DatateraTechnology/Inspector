@@ -1,0 +1,240 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "Datatera Beta API",
+    "description": "An API for Datatera Inspector Functions"
+  }, 
+  "paths": {
+  "/beta/checkcreditcardno/{creditcardno}": {
+      "get": {
+        "tags": [
+          "creditcardno"
+        ],
+        "description": "Returns if credit card no detected!",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "creditcardno",
+            "required": true,
+            "description": "creditcardno",
+            "schema": {
+              "type": "string",
+              "example": "5490892344502398"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Credit Card Number Check Verified",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+    }},
+    "/beta/sensitivedatacnn": {
+      "get": {
+        "tags": [
+          "sensitivedatacnn"
+        ],
+        "description": "Returns sensitive data",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Sensitive_Data",
+            "required": true,
+            "allowReserved": true,
+            "description": "Sensitive_Data",
+            "schema": {
+              "type": "string",
+              "example": "https://datateraalpha.blob.core.windows.net/beta/SensitiveDataset.json"
+          }
+          },{
+            "in": "query",
+            "name": "Nonsensitive_Data",
+            "required": true,
+            "allowReserved": true,
+            "description": "Nonsensitive_Data",
+            "schema": {
+              "type": "string",
+              "example": "https://datateraalpha.blob.core.windows.net/beta/NonSensitiveDataset.json"
+            }
+         }],
+        "responses": {
+          "200": {
+            "description": "Sensitive Data",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": ""
+                    }
+                  }
+                }
+             }
+          }
+        }
+      },
+      "/beta/sensitivedatapre": {
+        "get": {
+          "tags": [
+            "sensitivedatapre"
+          ],
+          "description": "Returns sensitive data",
+          "parameters": [
+            {
+              "in": "query",
+              "name": "Anonymize_Data",
+              "required": true,
+              "allowReserved": true,
+              "description": "Anonymize_Data",
+              "schema": {
+                "type": "string",
+                "example": "https://datateraalpha.blob.core.windows.net/beta/SensitiveDataset.json"
+            }
+            }],
+          "responses": {
+            "200": {
+              "description": "Anonymize Data",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "string",
+                    "example": ""
+                      }
+                    }
+                  }
+               }
+            }
+          }
+        },
+        "/beta/qualitydata": {
+          "get": {
+            "tags": [
+              "qualitydata"
+            ],
+            "description": "Returns quality data",
+            "parameters": [
+              {
+                "in": "query",
+                "name": "Quality_Data",
+                "required": true,
+                "allowReserved": true,
+                "description": "Quality_Data",
+                "schema": {
+                  "type": "string",
+                  "example": "https://datateraalpha.blob.core.windows.net/beta/TestData.csv"
+              }
+              }],
+            "responses": {
+              "200": {
+                "description": "Quality_Data",
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "example": ""
+                        }
+                      }
+                    }
+                 }
+              }
+            }
+          },
+     "/beta/imagequalitydetector": {
+      "get": {
+        "tags": [
+          "imagequalitydetector"
+        ],
+        "description": "Returns image quality data matrix",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "path",
+            "required": true,
+            "allowReserved": true,
+            "description": "Azure blob url",
+            "schema": {
+              "type": "string",
+              "example": "https://dataterastoragetest.blob.core.windows.net"
+          }
+          },
+          {
+            "in": "query",
+            "name": "container",
+            "required": true,
+            "allowReserved": true,
+            "description": "Azure blob container",
+            "schema": {
+              "type": "string",
+              "example": "mri-images"
+            }
+         }],
+        "responses": {
+          "200": {
+            "description": "image quality matrix",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": ""
+                    }
+                  }
+                }
+             }
+          }
+        }
+      },
+    "/beta/imagequalitysensivity": {
+      "get": {
+        "tags": [
+          "imagequalitysensivity"
+        ],
+        "description": "Returns image quality data matrix",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "path",
+            "required": true,
+            "allowReserved": true,
+            "description": "Azure blob url",
+            "schema": {
+              "type": "string",
+              "example": "https://dataterastoragetest.blob.core.windows.net"
+          }
+          },
+          {
+            "in": "query",
+            "name": "container",
+            "required": true,
+            "allowReserved": true,
+            "description": "Azure blob container",
+            "schema": {
+              "type": "string",
+              "example": "mri-images"
+            }
+         }],
+        "responses": {
+          "200": {
+            "description": "return image sensitivity",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": ""
+                    }
+                  }
+                }
+             }
+          }
+        }
+      }
+
+    }
+}
