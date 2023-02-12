@@ -99,7 +99,7 @@ networkx
 numba
 numpy
 oauthlib
-opencv-python
+opencv-python-headless
 openpyxl
 opt-einsum
 packaging
